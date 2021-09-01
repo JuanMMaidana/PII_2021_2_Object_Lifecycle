@@ -12,7 +12,31 @@ namespace ClassLibrary
     /// Esta clase representa un tren muy básico.
     /// </summary>
     public class Train
-    {
+    {   
+        private static int count = 0;
+        private string id;
+
+        public string Id {get; set;}
+        public static int Count {
+            get{
+                return Train.count;
+            }
+        }
+
+        public Train (string id)
+        {    
+            this.Id = id;
+
+            count++;
+
+        }
+
+        ~Train()
+        {
+            count--;
+        }
+
+
         /// <summary>
         /// Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
         /// </summary>
@@ -29,12 +53,12 @@ namespace ClassLibrary
         {
             if (this.IsEngineStarted)
             {
-                Console.Write("The engines are already running");
+                Console.WriteLine("The engines are already running");
                 return false;
             }
 
             this.IsEngineStarted = true;
-            Console.Write("Engines on");
+            Console.WriteLine("Engines on");
             return true;
         }
 
